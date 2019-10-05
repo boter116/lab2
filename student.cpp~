@@ -87,102 +87,6 @@ int Student::getStudentId()
 {
   return studentId; //access and return student ID
 }
-int compareCGPA(DomesticStudent student1, DomesticStudent student2)
-{
-  if(student1.getCgpa() > student2.getCgpa())
-    {
-      return 1;
-    }
-  else if(student1.getCgpa() < student2.getCgpa())
-    {
-      return -1;
-    }
-  else return 0;
-}
-int compareCGPA(InternationalStudent student1, InternationalStudent student2)
-{
-  if(student1.getCgpa() > student2.getCgpa())
-    {
-      return 1;
-    }
-  else if(student1.getCgpa() < student2.getCgpa())
-    {
-      return -1;
-    }
-  else return 0;
-}
-int compareResearchScore(DomesticStudent student1, DomesticStudent student2)
-{
-  if(student1.getResearchScore() > student2.getResearchScore())
-    {
-      return 1;
-    }
-  else if(student1.getResearchScore() < student2.getResearchScore())
-    {
-      return -1;
-    }
-  else return 0;
-}
-int compareResearchScore(InternationalStudent student1, InternationalStudent student2)
-{
-  if(student1.getResearchScore() > student2.getResearchScore())
-    {
-      return 1;
-    }
-  else if(student1.getResearchScore() < student2.getResearchScore())
-    {
-      return -1;
-    }
-  else return 0;
-}
-int compareLastName(DomesticStudent student1, DomesticStudent student2)
-{
-  if(student1.getLastName().compare(student2.getLastName()) > 0)
-    {
-      return -1;
-    }
-  else if(student1.getLastName().compare(student2.getLastName()) < 0)
-    {
-      return 1;
-    }
-  else return 0;
-}
-int compareLastName(InternationalStudent student1, InternationalStudent student2)
-{
-  if(student1.getLastName().compare(student2.getLastName()) > 0)
-    {
-      return -1;
-    }
-  else if(student1.getLastName().compare(student2.getLastName()) < 0)
-    {
-      return 1;
-    }
-  else return 0;
-}
-int compareFirstName(DomesticStudent student1, DomesticStudent student2)
-{
-  if(student1.getFirstName().compare(student2.getFirstName()) > 0)
-    {
-      return -1;
-    }
-  else if(student1.getFirstName().compare(student2.getFirstName()) < 0)
-    {
-      return 1;
-    }
-  else return 0;
-}
-int compareFirstName(InternationalStudent student1, InternationalStudent student2)
-{
-  if(student1.getFirstName().compare(student2.getFirstName()) > 0)
-    {
-      return -1;
-    }
-  else if(student1.getFirstName().compare(student2.getFirstName()) < 0)
-    {
-      return 1;
-    }
-  else return 0;
-}
 //--------------------------------------------
 // DOMESTIC STUDENT CLASS IMPLEMENTATIONS
 //--------------------------------------------
@@ -218,7 +122,6 @@ ToeflScore::ToeflScore(int Reading, int Listening, int Speaking, int Writing)
     listening = Listening;
     speaking = Speaking;
     writing = Writing;
-    total = Reading + Listening + Speaking + Writing;
     if (Reading < 0 || Reading > 30)  //error checking for reading score
     {
         cout << "Illegal values for TOEFL Reading score inputted. Exiting program\n";
@@ -247,7 +150,6 @@ void ToeflScore::set(int Reading, int Listening, int Speaking, int Writing)
     listening = Listening;	//set listening value
     speaking = Speaking;	//set speaking value
     writing = Writing;		//set writing value
-    total = Reading + Listening + Speaking + Writing;
     if (reading < 0 || reading > 30)//error checking
     {
         cout << "Illegal values for TOEFL Reading score inputted. Exiting program\n";
@@ -290,9 +192,9 @@ int ToeflScore::getWriting()
   return writing; //access and returns writing scores
 }
 //recieves total toeflscore
-int ToeflScore::getTotal()
+int ToeflScore::addScores()
 {
-  return total;
+  return reading + listening + speaking + writing; //accessand and returns the calculated sum of all s scor
 }
 //--------------------------------------------
 // INTERNATIONAL STUDENT CLASS IMPLEMENTATIONS
