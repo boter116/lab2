@@ -8,7 +8,7 @@
  * C process file to implement all classes and its declared member functions.
  *
  */
- 
+
 //--------------------------------------------------------- 
 //INCLUDES 
 //--------------------------------------------------------- 
@@ -325,10 +325,3 @@ ToeflScore InternationalStudent::getToeflScore()
 {
   return toeflScore; //access and returns toeflscore class
 }
-
-
-
-
-
-
-

@@ -25,21 +25,13 @@ using namespace std; //use namespace std
 class Student
 {
     public:
-    friend int compareCGPA(DomesticStudent student1, DomesticStudent student2);
-    friend int compareCGPA(InternationalStudent student1, InternationalStudent student2);
-    friend int compareResearchScore(DomesticStudent student1, DomesticStudent student2);  
-    friend int compareResearchScore(InternationalStudent student1, InternationalStudent student2);
-    friend int compareFirstName(DomesticStudent student1, DomesticStudent student2);
-    friend int compareFirstName(InternationalStudent student1, InternationalStudent student2);
-    friend int compareLastName(DomesticStudent student1, DomesticStudent student2);
-    friend int compareLastName(InternationalStudent student1, InternationalStudent student2);
     Student(string FirstName, string LastName, float Cgpa, int ResearchScore, int StudentId);   //Declaration of class
     Student(); //Declaration of empty student class
     void set(string FirstName, string LastName, float Cgpa, int ResearchScore, int StudentId);  //Set function for Student class members
     void set(float Cgpa);	//Declaration of set function for just Cgpa value
     string getFirstName();  //Declaration of get function to get firstname string variable
     string getLastName();   //Declaration of get function to get lastname string variable
-  float getCgpa();   	//Declaration of get function to get cgpa float variable
+    float getCgpa();   	//Declaration of get function to get cgpa float variable
     int getResearchScore(); //Declaration of get function to get researchScore variable
     int getStudentId();     //Declaration of get function to get studentID int variable
     private:
@@ -54,6 +46,10 @@ class Student
 class DomesticStudent : public Student
 {
     public:
+    friend int compareCGPA(DomesticStudent student1, DomesticStudent student2);
+    friend int compareResearchScore(DomesticStudent student1, DomesticStudent student2);
+    friend int compareLastName(DomesticStudent student1, DomesticStudent student2);
+    friend int compareFirstName(DomesticStudent student1, DomesticStudent student2);
     friend ostream& operator <<(ostream& outs, const DomesticStudent& student);
     DomesticStudent(string FirstName, string LastName, string Province, float Cgpa, int ResearchScore, int StudentId); //Declaration of class
     DomesticStudent();//Declaration of empty domesticstudent class
@@ -87,6 +83,10 @@ class ToeflScore
 class InternationalStudent : public Student
 {
     public:
+    friend int compareCGPA(InternationalStudent student1, InternationalStudent student2);
+    friend int compareResearchScore(InternationalStudent student1, InternationalStudent student2);
+    friend int compareFirstName(InternationalStudent student1, InternationalStudent student2);
+    friend int compareLastName(InternationalStudent student1, InternationalStudent student2);
     friend ostream& operator <<(ostream& outs, const InternationalStudent& student);
     InternationalStudent(string FirstName, string LastName, string Country, float Cgpa, int ResearchScore, ToeflScore TOEFLScore, int StudentId); //Declaration of international student class
     InternationalStudent(); //Declaration of empty international student class
@@ -97,3 +97,4 @@ class InternationalStudent : public Student
     string country;          //country string variable
     ToeflScore toeflScore;   //toefl score of a toeflscore class variable
 };
+
