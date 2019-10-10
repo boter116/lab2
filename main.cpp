@@ -79,7 +79,8 @@ int main(){
   getline(domesticFile, line);
   cout << "File format: " << line << endl;
   int StudentNumLibrary[10000]; //create empty array of all zeros. Size 10000, assuming less than 100000 students
-  fill_n(StudentNumLibrary,10000,-1); //Initalize and fill the array with a constant number (-1) besides 0 because its in the range of the random num. generator
+  fill_n(StudentNumLibrary,10000,-1); //Initalize and fill the array with a constant number (-1) besides 0 
+  //because its in the range of the random num. generator
   int stu_count = 1; //student count;
   int j = 0;
   int studentNumber = getRandStudentNumber(StudentNumLibrary); //generates a random student number in the appropriate range
@@ -118,10 +119,10 @@ int main(){
     D_Student[j].set(firstName, lastName, province, cgpa, researchScore, studentNumber);
 
     //print the student info to the screen
-    //cout << "Domestic student " << stu_count << " " << D_Student[j].getFirstName() << " " 
-    // << D_Student[j].getLastName() << " from " << D_Student[j].getProvince() << " province has cgpa of "
-    //	 << D_Student[j].getCgpa() << ", and research score of " << D_Student[j].getResearchScore() 
-    //   << ". Assigned Student ID: " << D_Student[j].getStudentId() << endl;
+    cout << "Domestic student " << stu_count << " " << D_Student[j].getFirstName() << " " 
+     << D_Student[j].getLastName() << " from " << D_Student[j].getProvince() << " province has cgpa of "
+     << D_Student[j].getCgpa() << ", and research score of " << D_Student[j].getResearchScore() 
+    << ". Assigned Student ID: " << D_Student[j].getStudentId() << endl;
   
     stu_count++; //increment student count
     studentNumber=getRandStudentNumber(StudentNumLibrary); //generate randome student number
@@ -192,14 +193,14 @@ int main(){
     I_Student[j].set(firstName, lastName, country, cgpa, researchScore, TOEFLScore, studentNumber);
 
     //print the student info to the screen
-    //cout << "International student " << stu_count << " " << I_Student[j].getFirstName() << " " 
-    // << I_Student[j].getLastName() << " from " << I_Student[j].getCountry() << " has cgpa of "
-    // << I_Student[j].getCgpa() << ", and research score of " << I_Student[j].getResearchScore() 
-    // << ". Assigned Student ID: " << I_Student[j].getStudentId() << endl
-    // << "Their TOEFL Scores are: reading = " << I_Student[j].getToeflScore().getReading()
-    // << ", listening = " << I_Student[j].getToeflScore().getListening() << ", speaking = "
-    // << I_Student[j].getToeflScore().getSpeaking() << ", writing = " << I_Student[j].getToeflScore().getWriting()
-    //  << "\n" << "Total TOEFL Score = " << I_Student[j].getToeflScore().getTotal() << endl;
+    cout << "International student " << stu_count << " " << I_Student[j].getFirstName() << " " 
+     << I_Student[j].getLastName() << " from " << I_Student[j].getCountry() << " has cgpa of "
+     << I_Student[j].getCgpa() << ", and research score of " << I_Student[j].getResearchScore() 
+     << ". Assigned Student ID: " << I_Student[j].getStudentId() << endl
+     << "Their TOEFL Scores are: reading = " << I_Student[j].getToeflScore().getReading()
+     << ", listening = " << I_Student[j].getToeflScore().getListening() << ", speaking = "
+     << I_Student[j].getToeflScore().getSpeaking() << ", writing = " << I_Student[j].getToeflScore().getWriting()
+     << "\n" << "Total TOEFL Score = " << I_Student[j].getToeflScore().getTotal() << endl;
 
     stu_count++;//Increment student count
     studentNumber=getRandStudentNumber(StudentNumLibrary); //generator random student number
