@@ -8,13 +8,15 @@
  * C process file to implement all classes and its declared member functions.
  *
  */
-
+ 
 //--------------------------------------------------------- 
 //INCLUDES 
 //--------------------------------------------------------- 
 #include "student.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <stdio.h>
+#include <string.h>
 
 //-----------------------------------
 // STUDENT CLASS IMPLEMENTATIONS
@@ -63,27 +65,27 @@ void Student::set(string FirstName, string LastName, float Cgpa, int ResearchSco
 void Student::set(float Cgpa) { cgpa = Cgpa; };
 
 //recieves first name value
-string Student::getFirstName()
+string Student::getFirstName() const
 {
   return firstName; //access and return firstname
 }
 //recieves last name value
-string Student::getLastName()
+string Student::getLastName() const
 {
   return lastName; //access and return lastname
 }
 //recieves cgpa value
-float Student::getCgpa() 
+float Student::getCgpa() const
 {
   return cgpa; //access and return cgpa
 }
 //recieves researchscore value
-int Student::getResearchScore()
+int Student::getResearchScore() const
 {
   return researchScore; //access and return ResearchScore
 }
 //recieves studentID value
-int Student::getStudentId()
+int Student::getStudentId() const
 {
   return studentId; //access and return student ID
 }
@@ -137,11 +139,11 @@ int compareResearchScore(InternationalStudent student1, InternationalStudent stu
 }
 int compareLastName(DomesticStudent student1, DomesticStudent student2)
 {
-  if(student1.getLastName().compare(student2.getLastName()) > 0)
+  if(strcmp(student1.getLastName().c_str(), student2.getLastName().c_str()) > 0)
     {
       return -1;
     }
-  else if(student1.getLastName().compare(student2.getLastName()) < 0)
+  else if(strcmp(student1.getLastName().c_str(), student2.getLastName().c_str()) < 0)
     {
       return 1;
     }
@@ -149,11 +151,11 @@ int compareLastName(DomesticStudent student1, DomesticStudent student2)
 }
 int compareLastName(InternationalStudent student1, InternationalStudent student2)
 {
-  if(student1.getLastName().compare(student2.getLastName()) > 0)
+  if(strcmp(student1.getLastName().c_str(), student2.getLastName().c_str()) > 0)
     {
       return -1;
     }
-  else if(student1.getLastName().compare(student2.getLastName()) < 0)
+  else if(strcmp(student1.getLastName().c_str(), student2.getLastName().c_str()) < 0)
     {
       return 1;
     }
@@ -161,11 +163,11 @@ int compareLastName(InternationalStudent student1, InternationalStudent student2
 }
 int compareFirstName(DomesticStudent student1, DomesticStudent student2)
 {
-  if(student1.getFirstName().compare(student2.getFirstName()) > 0)
+  if(strcmp(student1.getFirstName().c_str(), student2.getFirstName().c_str()) > 0)
     {
       return -1;
     }
-  else if(student1.getFirstName().compare(student2.getFirstName()) < 0)
+  else if(strcmp(student1.getFirstName().c_str(), student2.getFirstName().c_str()) < 0)
     {
       return 1;
     }
@@ -173,16 +175,42 @@ int compareFirstName(DomesticStudent student1, DomesticStudent student2)
 }
 int compareFirstName(InternationalStudent student1, InternationalStudent student2)
 {
-  if(student1.getFirstName().compare(student2.getFirstName()) > 0)
+  if(strcmp(student1.getFirstName().c_str(), student2.getFirstName().c_str()) > 0)
     {
       return -1;
     }
-  else if(student1.getFirstName().compare(student2.getFirstName()) < 0)
+  else if(strcmp(student1.getFirstName().c_str(), student2.getFirstName().c_str()) < 0)
     {
       return 1;
     }
   else return 0;
 }
+int compareProvince(DomesticStudent student1, DomesticStudent student2)
+{
+  if(strcmp(student1.getProvince().c_str(), student2.getProvince().c_str()) > 0)
+    {
+      return -1;
+    }
+  else if(strcmp(student1.getProvince().c_str(), student2.getProvince().c_str()) < 0)
+    {
+      return 1;
+    }
+  else return 0;
+}
+int compareCountry(InternationalStudent student1, InternationalStudent student2)
+{
+  if(strcmp(student1.getCountry().c_str(), student2.getCountry().c_str()) > 0)
+    {
+      return -1;
+    }
+  else if(strcmp(student1.getCountry().c_str(), student2.getCountry().c_str()) < 0)
+    {
+      return 1;
+    }
+  else return 0;
+}
+
+
 //--------------------------------------------
 // DOMESTIC STUDENT CLASS IMPLEMENTATIONS
 //--------------------------------------------
@@ -201,7 +229,7 @@ void DomesticStudent::set(string FirstName, string LastName, string Province, fl
   province = Province; //set province
 }
 //recieves province value 
-string DomesticStudent::getProvince()
+string DomesticStudent::getProvince() const
 {
   return province; //access and return province
 }
@@ -270,27 +298,27 @@ void ToeflScore::set(int Reading, int Listening, int Speaking, int Writing)
     }
 }
 //recieves reading score value
-int ToeflScore::getReading()
+int ToeflScore::getReading() const
 {
   return reading; //access and returns reading score
 }
 //recieves listening score value
-int ToeflScore::getListening()
+int ToeflScore::getListening() const
 {
   return listening; //access and returns listening score
 }
 //recieves speaking score value
-int ToeflScore::getSpeaking()
+int ToeflScore::getSpeaking() const
 {
   return speaking; //access and returns speaking score
 }
 //recieves writing score value
-int ToeflScore::getWriting()
+int ToeflScore::getWriting() const
 {
   return writing; //access and returns writing scores
 }
 //recieves total toeflscore
-int ToeflScore::getTotal()
+int ToeflScore::getTotal() const
 {
   return total;
 }
@@ -316,12 +344,203 @@ void InternationalStudent::set(string FirstName, string LastName, string Country
     country = Country;
 }
 //recieves country data
-string InternationalStudent::getCountry()
+string InternationalStudent::getCountry() const
 {
   return country; //access and reutrns country
 }
 //recieves toeflscore values
-ToeflScore InternationalStudent::getToeflScore()
+ToeflScore InternationalStudent::getToeflScore() const
 {
   return toeflScore; //access and returns toeflscore class
 }
+
+ostream& operator <<(ostream& outs, const DomesticStudent& student){
+ return outs << "Domestic student: " << student.getFirstName() << " " 
+       << student.getLastName() << " from " << student.getProvince() << " province has cgpa of "
+       << student.getCgpa() << ", and research score of " << student.getResearchScore() 
+       << ". Assigned Student ID: " << student.getStudentId();
+}
+// Problem with this overloading function is that the student is a const variable 
+// and the call member functions such as getFirstName() does not run due to 
+// const being read-only (SOLVED)
+ostream& operator <<(ostream& outs, const InternationalStudent& student){
+  return outs << "International student: " <<  student.getFirstName() <<  " " 
+       << student.getLastName() << " from " << student.getCountry() << " has cgpa of "
+       << student.getCgpa() << ", and research score of " << student.getResearchScore() 
+       << ". Assigned Student ID: " << student.getStudentId() << endl
+       << "Their TOEFL Scores are: reading = " << student.getToeflScore().getReading()
+       << ", listening = " << student.getToeflScore().getListening() << ", speaking = "
+       << student.getToeflScore().getSpeaking() << ", writing = " << student.getToeflScore().getWriting()
+       << "\n" << "Total TOEFL Score = " << student.getToeflScore().getTotal();
+  
+}
+
+void sortGPA(DomesticStudent student[], int size){
+
+ DomesticStudent temp;
+ for (int j=0;j<size-1;j++){
+   for(int i=0;i<size-j-1;i++){
+     if(compareCGPA(student[i],student[i+1])==-1){
+         temp=student[i];
+	       student[i]=student[i+1]; 
+	       student[i+1]=temp;
+       } 
+   }
+ }
+} 
+void sortGPA(InternationalStudent student[], int size){
+
+ InternationalStudent temp;
+ for (int j=0;j<size-1;j++){
+   for(int i=0;i<size-j-1;i++){
+     if(compareCGPA(student[i],student[i+1])==-1){
+         temp=student[i];
+	       student[i]=student[i+1]; 
+	       student[i+1]=temp;
+       } 
+   }
+ }
+} 
+
+
+void sortRS(DomesticStudent student[], int size){
+
+ DomesticStudent temp;
+ for (int j=0;j<size-1;j++){
+   for(int i=0;i<size-j-1;i++){
+     if(compareResearchScore(student[i],student[i+1])==-1){
+         temp=student[i];
+	 student[i]=student[i+1]; 
+	 student[i+1]=temp;
+       } 
+   }
+ }
+}
+ 
+
+
+void sortRS(InternationalStudent student[], int size){
+ InternationalStudent temp;
+ for (int j=0;j<size-1;j++){
+   for(int i=0;i<size-j-1;i++){
+     if(compareResearchScore(student[i],student[i+1])==-1){
+         temp=student[i];
+	 student[i]=student[i+1]; 
+	 student[i+1]=temp;
+       } 
+   }
+ }
+ }
+
+void sortFirstName(DomesticStudent student[], int size){
+ DomesticStudent temp;
+ for (int j=0;j<size-1;j++){
+   for(int i=0;i<size-j-1;i++){
+     if(compareFirstName(student[i],student[i+1])==-1){
+         temp=student[i];
+	 student[i]=student[i+1]; 
+	 student[i+1]=temp;
+       } 
+   }
+ }
+}
+
+void sortFirstName(InternationalStudent student[], int size){
+ InternationalStudent temp;
+ for (int j=0;j<size-1;j++){
+   for(int i=0;i<size-j-1;i++){
+     if(compareFirstName(student[i],student[i+1])==-1){
+         temp=student[i];
+	 student[i]=student[i+1]; 
+	 student[i+1]=temp;
+       } 
+   }
+ }
+}
+
+void sortLastName(DomesticStudent student[], int size){
+ DomesticStudent temp;
+ for (int j=0;j<size-1;j++){
+   for(int i=0;i<size-j-1;i++){
+     if(compareLastName(student[i],student[i+1])==-1){
+         temp=student[i];
+	 student[i]=student[i+1]; 
+	 student[i+1]=temp;
+       } 
+   }
+ }
+}
+
+void sortLastName(InternationalStudent student[], int size){
+ InternationalStudent temp;
+ for (int j=0;j<size-1;j++){
+   for(int i=0;i<size-j-1;i++){
+     if(compareLastName(student[i],student[i+1])==-1){
+         temp=student[i];
+	 student[i]=student[i+1]; 
+	 student[i+1]=temp;
+       } 
+   }
+ }
+}
+
+void sortProvince(DomesticStudent student[], int size){
+DomesticStudent temp;
+ for (int j=0;j<size-1;j++){
+   for(int i=0;i<size-j-1;i++){
+     if(compareProvince(student[i],student[i+1])==-1){
+         temp=student[i];
+	 student[i]=student[i+1]; 
+	 student[i+1]=temp;
+       } 
+   }
+ }
+}
+
+void sortCountry(InternationalStudent student[], int size){
+InternationalStudent temp;
+ for (int j=0;j<size-1;j++){
+   for(int i=0;i<size-j-1;i++){
+     if(compareCountry(student[i],student[i+1])==-1){
+         temp=student[i];
+	 student[i]=student[i+1]; 
+	 student[i+1]=temp;
+       } 
+   }
+ }
+}
+void sortOverall(DomesticStudent student[], int size){
+   DomesticStudent temp;
+   for (int i=0; i<size-1; i++){
+     for (int j=0; j<size-i-1; j++){
+       sortRS(student, size);
+       if (compareResearchScore(student[j], student[j+1]) == 0){
+	 sortGPA(student, size);
+	 if (compareCGPA(student[j], student[j+1]) == 0){
+	   sortProvince(student,size);
+	 }
+       }
+     }
+   }
+}
+void sortOverall(InternationalStudent student[], int size){
+   InternationalStudent temp;
+   for (int i=0; i<size-1; i++){
+     for (int j=0; j<size-i-1; j++){
+       sortRS(student, size);
+       if (compareResearchScore(student[j], student[j+1]) == 0){
+	 sortGPA(student, size);
+	 if (compareCGPA(student[j], student[j+1]) == 0){
+	   sortCountry(student,size);
+	 }
+       }
+     }
+ }
+}
+
+
+
+
+
+
+

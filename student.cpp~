@@ -15,6 +15,8 @@
 #include "student.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <stdio.h>
+#include <string.h>
 
 //-----------------------------------
 // STUDENT CLASS IMPLEMENTATIONS
@@ -63,30 +65,128 @@ void Student::set(string FirstName, string LastName, float Cgpa, int ResearchSco
 void Student::set(float Cgpa) { cgpa = Cgpa; };
 
 //recieves first name value
-string Student::getFirstName()
+string Student::getFirstName() const
 {
   return firstName; //access and return firstname
 }
 //recieves last name value
-string Student::getLastName()
+string Student::getLastName() const
 {
   return lastName; //access and return lastname
 }
 //recieves cgpa value
-float Student::getCgpa() 
+float Student::getCgpa() const
 {
   return cgpa; //access and return cgpa
 }
 //recieves researchscore value
-int Student::getResearchScore()
+int Student::getResearchScore() const
 {
   return researchScore; //access and return ResearchScore
 }
 //recieves studentID value
-int Student::getStudentId()
+int Student::getStudentId() const
 {
   return studentId; //access and return student ID
 }
+int compareCGPA(DomesticStudent student1, DomesticStudent student2)
+{
+  if(student1.getCgpa() > student2.getCgpa())
+    {
+      return 1;
+    }
+  else if(student1.getCgpa() < student2.getCgpa())
+    {
+      return -1;
+    }
+  else return 0;
+}
+int compareCGPA(InternationalStudent student1, InternationalStudent student2)
+{
+  if(student1.getCgpa() > student2.getCgpa())
+    {
+      return 1;
+    }
+  else if(student1.getCgpa() < student2.getCgpa())
+    {
+      return -1;
+    }
+  else return 0;
+}
+int compareResearchScore(DomesticStudent student1, DomesticStudent student2)
+{
+  if(student1.getResearchScore() > student2.getResearchScore())
+    {
+      return 1;
+    }
+  else if(student1.getResearchScore() < student2.getResearchScore())
+    {
+      return -1;
+    }
+  else return 0;
+}
+int compareResearchScore(InternationalStudent student1, InternationalStudent student2)
+{
+  if(student1.getResearchScore() > student2.getResearchScore())
+    {
+      return 1;
+    }
+  else if(student1.getResearchScore() < student2.getResearchScore())
+    {
+      return -1;
+    }
+  else return 0;
+}
+int compareLastName(DomesticStudent student1, DomesticStudent student2)
+{
+  if(strcmp(student1.getLastName().c_str(), student2.getLastName().c_str()) > 0)
+    {
+      return -1;
+    }
+  else if(strcmp(student1.getLastName().c_str(), student2.getLastName().c_str()) < 0)
+    {
+      return 1;
+    }
+  else return 0;
+}
+int compareLastName(InternationalStudent student1, InternationalStudent student2)
+{
+  if(strcmp(student1.getLastName().c_str(), student2.getLastName().c_str()) > 0)
+    {
+      return -1;
+    }
+  else if(strcmp(student1.getLastName().c_str(), student2.getLastName().c_str()) < 0)
+    {
+      return 1;
+    }
+  else return 0;
+}
+int compareFirstName(DomesticStudent student1, DomesticStudent student2)
+{
+  if(strcmp(student1.getFirstName().c_str(), student2.getFirstName().c_str()) > 0)
+    {
+      return -1;
+    }
+  else if(strcmp(student1.getFirstName().c_str(), student2.getFirstName().c_str()) < 0)
+    {
+      return 1;
+    }
+  else return 0;
+}
+int compareFirstName(InternationalStudent student1, InternationalStudent student2)
+{
+  if(strcmp(student1.getFirstName().c_str(), student2.getFirstName().c_str()) > 0)
+    {
+      return -1;
+    }
+  else if(strcmp(student1.getFirstName().c_str(), student2.getFirstName().c_str()) < 0)
+    {
+      return 1;
+    }
+  else return 0;
+}
+
+
 //--------------------------------------------
 // DOMESTIC STUDENT CLASS IMPLEMENTATIONS
 //--------------------------------------------
@@ -105,7 +205,7 @@ void DomesticStudent::set(string FirstName, string LastName, string Province, fl
   province = Province; //set province
 }
 //recieves province value 
-string DomesticStudent::getProvince()
+string DomesticStudent::getProvince() const
 {
   return province; //access and return province
 }
@@ -122,6 +222,7 @@ ToeflScore::ToeflScore(int Reading, int Listening, int Speaking, int Writing)
     listening = Listening;
     speaking = Speaking;
     writing = Writing;
+    total = Reading + Listening + Speaking + Writing;
     if (Reading < 0 || Reading > 30)  //error checking for reading score
     {
         cout << "Illegal values for TOEFL Reading score inputted. Exiting program\n";
@@ -150,6 +251,7 @@ void ToeflScore::set(int Reading, int Listening, int Speaking, int Writing)
     listening = Listening;	//set listening value
     speaking = Speaking;	//set speaking value
     writing = Writing;		//set writing value
+    total = Reading + Listening + Speaking + Writing;
     if (reading < 0 || reading > 30)//error checking
     {
         cout << "Illegal values for TOEFL Reading score inputted. Exiting program\n";
@@ -172,29 +274,29 @@ void ToeflScore::set(int Reading, int Listening, int Speaking, int Writing)
     }
 }
 //recieves reading score value
-int ToeflScore::getReading()
+int ToeflScore::getReading() const
 {
   return reading; //access and returns reading score
 }
 //recieves listening score value
-int ToeflScore::getListening()
+int ToeflScore::getListening() const
 {
   return listening; //access and returns listening score
 }
 //recieves speaking score value
-int ToeflScore::getSpeaking()
+int ToeflScore::getSpeaking() const
 {
   return speaking; //access and returns speaking score
 }
 //recieves writing score value
-int ToeflScore::getWriting()
+int ToeflScore::getWriting() const
 {
   return writing; //access and returns writing scores
 }
 //recieves total toeflscore
-int ToeflScore::addScores()
+int ToeflScore::getTotal() const
 {
-  return reading + listening + speaking + writing; //accessand and returns the calculated sum of all s scor
+  return total;
 }
 //--------------------------------------------
 // INTERNATIONAL STUDENT CLASS IMPLEMENTATIONS
@@ -218,15 +320,38 @@ void InternationalStudent::set(string FirstName, string LastName, string Country
     country = Country;
 }
 //recieves country data
-string InternationalStudent::getCountry()
+string InternationalStudent::getCountry() const
 {
   return country; //access and reutrns country
 }
 //recieves toeflscore values
-ToeflScore InternationalStudent::getToeflScore()
+ToeflScore InternationalStudent::getToeflScore() const
 {
   return toeflScore; //access and returns toeflscore class
 }
+
+ostream& operator <<(ostream& outs, const DomesticStudent& student){
+ return outs << "Domestic student: " << student.getFirstName() << " " 
+       << student.getLastName() << " from " << student.getProvince() << " province has cgpa of "
+       << student.getCgpa() << ", and research score of " << student.getResearchScore() 
+       << ". Assigned Student ID: " << student.getStudentId();
+  
+}
+// Problem with this overloading function is that the student is a const variable 
+// and the call member functions such as getFirstName() does not run due to 
+// const being read-only (SOLVED)
+ostream& operator <<(ostream& outs, const InternationalStudent& student){
+  return outs << "International student: " <<  student.getFirstName() <<  " " 
+       << student.getLastName() << " from " << student.getCountry() << " has cgpa of "
+       << student.getCgpa() << ", and research score of " << student.getResearchScore() 
+       << ". Assigned Student ID: " << student.getStudentId() << endl
+       << "Their TOEFL Scores are: reading = " << student.getToeflScore().getReading()
+       << ", listening = " << student.getToeflScore().getListening() << ", speaking = "
+       << student.getToeflScore().getSpeaking() << ", writing = " << student.getToeflScore().getWriting()
+       << "\n" << "Total TOEFL Score = " << student.getToeflScore().getTotal();
+  
+}
+
 
 
 

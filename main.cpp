@@ -79,19 +79,16 @@ int main(){
   getline(domesticFile, line);
   cout << "File format: " << line << endl;
   int StudentNumLibrary[10000]; //create empty array of all zeros. Size 10000, assuming less than 100000 students
-  fill_n(StudentNumLibrary,10000,-1); //Initalize and fill the array with a constant number (-1) besides 0 
-  //because its in the range of the random num. generator
-  int stu_count = 1; //student count;
+  fill_n(StudentNumLibrary,10000,-1); //Initalize and fill the array with a constant number (-1) besides 0 because its in the range of the random num. generator
+  int d_stu_count = 1; //student count;
   int j = 0;
   int studentNumber = getRandStudentNumber(StudentNumLibrary); //generates a random student number in the appropriate range
-  DomesticStudent D_Student[100];
+ 
+ DomesticStudent D_Student[100];
   //Keep reading the rest of the lines in domestic-stu.txt
   while( getline(domesticFile, line) ) {
     /*process each line, get each field separated by a comma.
      *We use istringstream to handle it.
-     *Note in this example code here, we assume the file format
-     *is perfect and do NOT handle error cases. We will leave the
-     *error and exception handling of file format to Lab Assignment 4
      */
     istringstream ss(line);
 
@@ -101,33 +98,30 @@ int main(){
 
     //get firstName separated by comma
     getline(ss, firstName, ',');
-
     //get lastName separated by comma
     getline(ss, lastName, ',');
-
     //get province separated by comma
     getline(ss, province, ',');
-
     //get cpga separated by comma, and convert string to float
     getline(ss, s_cgpa, ',');
     cgpa = atof(s_cgpa.c_str());
-    
     //get researchScore separated by comma, and convert it to int
     getline(ss, s_researchScore, ',');
     researchScore = atoi(s_researchScore.c_str());
 
     D_Student[j].set(firstName, lastName, province, cgpa, researchScore, studentNumber);
 
+
+
     //print the student info to the screen
-    cout << "Domestic student " << stu_count << " " << D_Student[j].getFirstName() << " " 
-     << D_Student[j].getLastName() << " from " << D_Student[j].getProvince() << " province has cgpa of "
-     << D_Student[j].getCgpa() << ", and research score of " << D_Student[j].getResearchScore() 
-    << ". Assigned Student ID: " << D_Student[j].getStudentId() << endl;
+    //cout << "Domestic student " << stu_count << " " << D_Student[j].getFirstName() << " " 
+    // << D_Student[j].getLastName() << " from " << D_Student[j].getProvince() << " province has cgpa of "
+    //	 << D_Student[j].getCgpa() << ", and research score of " << D_Student[j].getResearchScore() 
+    //   << ". Assigned Student ID: " << D_Student[j].getStudentId() << endl;
   
-    stu_count++; //increment student count
+    d_stu_count++; //increment student count
     studentNumber=getRandStudentNumber(StudentNumLibrary); //generate randome student number
     j++;
-  
   }
   //close your file
   domesticFile.close();
@@ -139,10 +133,14 @@ int main(){
     return -1;
   }
   
+
+
+
+
   getline(internationalFile, line);
   cout << "File format: " << line << endl;
   
-  stu_count = 1; //intialize student count back to 1 for international student 
+  int i_stu_count = 1; //intialize student count back to 1 for international student 
   j = 0;
   InternationalStudent I_Student[100]; //create internationalstudent class variable
   ToeflScore TOEFLScore; //create toeflscore class variable
@@ -192,30 +190,17 @@ int main(){
     TOEFLScore.set(reading, listening, speaking, writing);
     I_Student[j].set(firstName, lastName, country, cgpa, researchScore, TOEFLScore, studentNumber);
 
-    //print the student info to the screen
-    cout << "International student " << stu_count << " " << I_Student[j].getFirstName() << " " 
-     << I_Student[j].getLastName() << " from " << I_Student[j].getCountry() << " has cgpa of "
-     << I_Student[j].getCgpa() << ", and research score of " << I_Student[j].getResearchScore() 
-     << ". Assigned Student ID: " << I_Student[j].getStudentId() << endl
-     << "Their TOEFL Scores are: reading = " << I_Student[j].getToeflScore().getReading()
-     << ", listening = " << I_Student[j].getToeflScore().getListening() << ", speaking = "
-     << I_Student[j].getToeflScore().getSpeaking() << ", writing = " << I_Student[j].getToeflScore().getWriting()
-     << "\n" << "Total TOEFL Score = " << I_Student[j].getToeflScore().getTotal() << endl;
-
-    stu_count++;//Increment student count
+    i_stu_count++;//Increment student count
     studentNumber=getRandStudentNumber(StudentNumLibrary); //generator random student number
     j++;
   }
   internationalFile.close(); // close file
+
   //Case function  for user input/interface
-
-
-
+  cout << compareCGPA(D_Student[0],D_Student[1]) << endl;
+  sortGPA(D_Student,d_stu_count);  cout << compareCGPA(D_Student[0],D_Student[1])<< endl;
+  //cout << I_Student[0] << endl;
+  //cout << D_Student[0] << endl;
+  //cout << "hi" << endl;
   return 0;
-
-
-
-
-
-
 }
