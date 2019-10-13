@@ -3,7 +3,6 @@
  * Author: Robert Respicio & Joshua Yeh
  * Date Created: Sept 20, 2019
  * Last Updated: Sept 25, 2019
- *
  * Description:
  * Header file to declare your classes; containing one parent class, Student, and 
  * two corresponding child child classes, DomesticStudents and InternationalStudents, 
@@ -34,14 +33,23 @@ class Student
     friend int compareFirstName(InternationalStudent student1, InternationalStudent student2);
     friend int compareLastName(DomesticStudent student1, DomesticStudent student2);
     friend int compareLastName(InternationalStudent student1, InternationalStudent student2);
-    friend void sortGPA(DomesticStudent student[], int size);
-    friend void sortGPA(InternationalStudent student[]);
-    friend void sortRS(DomesticStudent student[]);
-    friend void sortRS(InternationalStudent student[]);
-    friend void sortFirstName(DomesticStudent student[]);
-    friend void sortFirstName(InternationalStudent student[]);
-    friend void sortLastName(DomesticStudent student[]);
-    friend void sortLastName(InternationalStudent student[]);
+    friend void sortArray(DomesticStudent student[], int arg, int size);
+    friend void sortArray(InternationalStudent student[], int arg, int size);
+    friend void sortGPA(DomesticStudent student[],int start, int size);
+    friend void sortGPA(InternationalStudent student[],int start, int size);
+    friend void sortRS(DomesticStudent student[],int start, int size);
+    friend void sortRS(InternationalStudent student[],int start, int size);
+    friend void sortFirstName(DomesticStudent student[],int start, int size);
+    friend void sortFirstName(InternationalStudent student[],int start, int size);
+    friend void sortLastName(DomesticStudent student[],int start, int size);
+    friend void sortLastName(InternationalStudent student[],int start, int size);
+    friend void sortProvince(DomesticStudent student[], int start, int size);
+    friend void sortCountry(InternationalStudent student[], int start, int size);
+    friend void sortOverall(DomesticStudent student[], int size);
+    friend void sortOverall(InternationalStudent student[], int size);
+    friend void printALLDomestic(DomesticStudent student[], int size);
+    friend void printALLInternational(InternationalStudent student[], int size);
+
 
     Student(string FirstName, string LastName, float Cgpa, int ResearchScore, int StudentId);   //Declaration of class
     Student(); //Declaration of empty student class
@@ -84,7 +92,7 @@ class ToeflScore
     int getListening() const; //Declaration of get function for listening int variable
     int getSpeaking() const;  //Declaration of get function for speaking int variable
     int getWriting() const;   //Declaration of get funtion for writing int variable
-    int getTotal() const ;
+    int getTotal() const;
     private: 
     int reading;    //reading score int variable
     int listening;  //listening score int variable

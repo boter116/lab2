@@ -375,172 +375,220 @@ ostream& operator <<(ostream& outs, const InternationalStudent& student){
   
 }
 
-void sortGPA(DomesticStudent student[], int size){
-
- DomesticStudent temp;
- for (int j=0;j<size-1;j++){
-   for(int i=0;i<size-j-1;i++){
-     if(compareCGPA(student[i],student[i+1])==-1){
-         temp=student[i];
-	       student[i]=student[i+1]; 
-	       student[i+1]=temp;
-       } 
-   }
- }
-} 
-void sortGPA(InternationalStudent student[], int size){
-
- InternationalStudent temp;
- for (int j=0;j<size-1;j++){
-   for(int i=0;i<size-j-1;i++){
-     if(compareCGPA(student[i],student[i+1])==-1){
-         temp=student[i];
-	       student[i]=student[i+1]; 
-	       student[i+1]=temp;
-       } 
-   }
- }
-} 
-
-
-void sortRS(DomesticStudent student[], int size){
-
- DomesticStudent temp;
- for (int j=0;j<size-1;j++){
-   for(int i=0;i<size-j-1;i++){
-     if(compareResearchScore(student[i],student[i+1])==-1){
-         temp=student[i];
-	 student[i]=student[i+1]; 
-	 student[i+1]=temp;
-       } 
-   }
- }
-}
- 
-
-
-void sortRS(InternationalStudent student[], int size){
- InternationalStudent temp;
- for (int j=0;j<size-1;j++){
-   for(int i=0;i<size-j-1;i++){
-     if(compareResearchScore(student[i],student[i+1])==-1){
-         temp=student[i];
-	 student[i]=student[i+1]; 
-	 student[i+1]=temp;
-       } 
-   }
- }
- }
-
-void sortFirstName(DomesticStudent student[], int size){
- DomesticStudent temp;
- for (int j=0;j<size-1;j++){
-   for(int i=0;i<size-j-1;i++){
-     if(compareFirstName(student[i],student[i+1])==-1){
-         temp=student[i];
-	 student[i]=student[i+1]; 
-	 student[i+1]=temp;
-       } 
-   }
- }
-}
-
-void sortFirstName(InternationalStudent student[], int size){
- InternationalStudent temp;
- for (int j=0;j<size-1;j++){
-   for(int i=0;i<size-j-1;i++){
-     if(compareFirstName(student[i],student[i+1])==-1){
-         temp=student[i];
-	 student[i]=student[i+1]; 
-	 student[i+1]=temp;
-       } 
-   }
- }
-}
-
-void sortLastName(DomesticStudent student[], int size){
- DomesticStudent temp;
- for (int j=0;j<size-1;j++){
-   for(int i=0;i<size-j-1;i++){
-     if(compareLastName(student[i],student[i+1])==-1){
-         temp=student[i];
-	 student[i]=student[i+1]; 
-	 student[i+1]=temp;
-       } 
-   }
- }
-}
-
-void sortLastName(InternationalStudent student[], int size){
- InternationalStudent temp;
- for (int j=0;j<size-1;j++){
-   for(int i=0;i<size-j-1;i++){
-     if(compareLastName(student[i],student[i+1])==-1){
-         temp=student[i];
-	 student[i]=student[i+1]; 
-	 student[i+1]=temp;
-       } 
-   }
- }
-}
-
-void sortProvince(DomesticStudent student[], int size){
-DomesticStudent temp;
- for (int j=0;j<size-1;j++){
-   for(int i=0;i<size-j-1;i++){
-     if(compareProvince(student[i],student[i+1])==-1){
-         temp=student[i];
-	 student[i]=student[i+1]; 
-	 student[i+1]=temp;
-       } 
-   }
- }
-}
-
-void sortCountry(InternationalStudent student[], int size){
-InternationalStudent temp;
- for (int j=0;j<size-1;j++){
-   for(int i=0;i<size-j-1;i++){
-     if(compareCountry(student[i],student[i+1])==-1){
-         temp=student[i];
-	 student[i]=student[i+1]; 
-	 student[i+1]=temp;
-       } 
-   }
- }
-}
-void sortOverall(DomesticStudent student[], int size){
-   DomesticStudent temp;
-   for (int i=0; i<size-1; i++){
-     for (int j=0; j<size-i-1; j++){
-       sortRS(student, size);
-       if (compareResearchScore(student[j], student[j+1]) == 0){
-	 sortGPA(student, size);
-	 if (compareCGPA(student[j], student[j+1]) == 0){
-	   sortProvince(student,size);
-	 }
+void sortArray(DomesticStudent student[], int arg, int size)
+{
+  DomesticStudent temp;
+  switch(arg){
+    case 1:
+    for (int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareCGPA(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
        }
-     }
-   }
+      }
+    }  
+    break; 
+    case 2:
+    for (int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareResearchScore(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
+        }
+      }
+    } 
+    break;
+    case 3:
+    for (int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareFirstName(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
+        }
+      }
+    } 
+    break;
+    case 4:
+    for (int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareLastName(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
+        }
+      }
+    }
+    break;
+    case 5:
+    for(int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareResearchScore(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
+        }
+        if(compareResearchScore(student[i],student[i+1])==0){
+	  if(compareCGPA(student[i],student[i+1])==-1){
+	    temp=student[i];
+	    student[i]=student[i+1]; 
+	    student[i+1]=temp;
+          }
+          if(compareCGPA(student[i],student[i+1])==0){
+	    if(compareProvince(student[i],student[i+1])==-1){
+	      temp=student[i];
+	      student[i]=student[i+1]; 
+	      student[i+1]=temp;
+            }
+          }
+        }
+        } 
+    }
+    break;
+    default:
+    cout << "Input not 1-5, choosing default (overall) sorting\n";
+    for(int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareResearchScore(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
+        }
+        if(compareResearchScore(student[i],student[i+1])==0){
+	  if(compareCGPA(student[i],student[i+1])==-1){
+	    temp=student[i];
+	    student[i]=student[i+1]; 
+	    student[i+1]=temp;
+          }
+          if(compareCGPA(student[i],student[i+1])==0){
+	    if(compareProvince(student[i],student[i+1])==-1){
+	      temp=student[i];
+	      student[i]=student[i+1]; 
+	      student[i+1]=temp;
+            }
+          }
+        }
+        } 
+    }
+    break;
+  }
 }
-void sortOverall(InternationalStudent student[], int size){
-   InternationalStudent temp;
-   for (int i=0; i<size-1; i++){
-     for (int j=0; j<size-i-1; j++){
-       sortRS(student, size);
-       if (compareResearchScore(student[j], student[j+1]) == 0){
-	 sortGPA(student, size);
-	 if (compareCGPA(student[j], student[j+1]) == 0){
-	   sortCountry(student,size);
-	 }
+
+void sortArray(InternationalStudent student[], int arg, int size)
+{ 
+  InternationalStudent temp;
+  int start = 0;
+  switch(arg){
+    case 1:
+    for (int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareCGPA(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
        }
-     }
+      }
+    }
+    break;  
+    case 2:
+    for (int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareResearchScore(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
+        }
+      }
+    }
+    break; 
+    case 3:
+    for (int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareFirstName(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
+        }
+      }
+    }
+    break; 
+    case 4:
+    for (int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareLastName(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
+        }
+      }
+    }
+    break;
+    case 5:
+    for(int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareResearchScore(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
+        }
+        if(compareResearchScore(student[i],student[i+1])==0){
+	  if(compareCGPA(student[i],student[i+1])==-1){
+	    temp=student[i];
+	    student[i]=student[i+1]; 
+	    student[i+1]=temp;
+          }
+          if(compareCGPA(student[i],student[i+1])==0){
+	    if(compareCountry(student[i],student[i+1])==-1){
+	      temp=student[i];
+	      student[i]=student[i+1]; 
+	      student[i+1]=temp;
+            }
+          }
+        }
+        } 
+    }
+    break;
+    default:
+    cout << "Input not 1-5, choosing default (overall) sorting\n";
+    for(int j=0;j<size-1;j++){
+      for(int i=0;i<size-j-1;i++){
+        if(compareResearchScore(student[i],student[i+1])==-1){
+          temp=student[i];
+	        student[i]=student[i+1]; 
+	        student[i+1]=temp;
+        }
+        if(compareResearchScore(student[i],student[i+1])==0){
+	  if(compareCGPA(student[i],student[i+1])==-1){
+	    temp=student[i];
+	    student[i]=student[i+1]; 
+	    student[i+1]=temp;
+          }
+          if(compareCGPA(student[i],student[i+1])==0){
+	    if(compareCountry(student[i],student[i+1])==-1){
+	      temp=student[i];
+	      student[i]=student[i+1]; 
+	      student[i+1]=temp;
+            }
+          }
+        }
+        } 
+    }
+    break;
+  }
+}
+
+void printALLDomestic(DomesticStudent student[], int size){
+  for(int i=0;i<size-1;i++){
+    cout << student[i] << endl;
+  }
+}
+
+
+void printALLInternational(InternationalStudent student[], int size){
+    for(int i=0;i<size-1;i++){
+    cout << student[i] << endl;
  }
 }
-
-
-
-
-
-
-
