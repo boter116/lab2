@@ -3,20 +3,16 @@
  * Original Author: Zhenman Fang
  * Edited By: Robert Respicio & Joshua Yeh
  * Date Created: Sept 20, 2019
- * Last Updated: Sept 25, 2019
+ * Last Updated: Oct 12, 2019
  * Description:
- * Main file, containing driver code. Program reads domestic-stu.txt and 
- * international-stu.txt files, then declares and creates the appropriate
- * class for given data and prints off the data according to Domestic Students
- * and International Students.
- * 
+ * Program reads domestic-stu.txt and international-stu.txt files, then
+ * asks user for what type of sorting and what type of students to be 
+ * sorted, and prints off sorted list.
  */
 
 //---------------------------
 //  INCLUDES
 //---------------------------
-//main.cpp, put your driver code here, 
-//you can manipulate your class objects here
 #include <iostream> //cin and cout
 #include <fstream> //file processing
 #include <sstream> //formatted string processing
@@ -24,41 +20,6 @@
 #include <ctime> //time
 #include "student.hpp" //include student header file
 
-//----------------------------------------------------------------------------- 
-//  HELPER FUNCTIONS Used for random number generator and checker
-//-----------------------------------------------------------------------------
-int getRandStudentNumber(int ary[]); 
-bool checkValidNumber(int num, int ary[]);
-
-/* Function: int getRandStudentNumber 
- * -Assigns a random generated student number rather than a linear count
- * -Assume the range is from 20200000 to 20210000 
- */
-int getRandStudentNumber(int ary[]){
-  int temp = rand()%10000 + 20200000; //randomize number from 0 to 10000 and added to 20200000 ie. range from 20200000 to 20210000
-  if (checkValidNumber(temp,ary)==true){ //if valid returns value
-     return temp;
-  }
-  else{
-    return getRandStudentNumber(ary); //if number was not valid goes through the same function (recursive)
-   }
-}
-/* Function: bool checkValidNumber
- * Receives given number and array to find and check if the number given does not exist
- * in the given array. Onces it reaches the end, meaning that the number has not been   
- * found, it intialize that spot to the according number given.
- */
-bool checkValidNumber(int num, int ary[]){
-	for(int i=0;i<10000;i++){
-		if (ary[i]==num){  //if number already exist in library return false (not valid number)
-			return false;
-		}
-		if (ary[i]==-1){ //if number has not been found set the number to list and return true (valid number)
-			ary[i]=num;
-			return true;
-		}
-	}   
-} 
 //--------------
 // MAIN 
 //--------------
@@ -118,12 +79,12 @@ int main(){
   }
   getline(internationalFile, line);
   cout << "File format: " << line << endl;
-  int i_stu_count = 0; 
+  int i_stu_count = 0;
+  int total; 
   j = 0;
   InternationalStudent I_Student[100]; //create internationalstudent class variable
   ToeflScore TOEFLScore; //create toeflscore class variable
-  while(getline(internationalFile, line))
-  {
+  while(getline(internationalFile, line)){
     istringstream ss(line);
     string firstName, lastName, country, s_cgpa, s_researchScore, s_reading, s_listening, s_speaking, s_writing;
     float cgpa;
@@ -152,38 +113,48 @@ int main(){
     //get writing score seperated by comma, and convert to int
     getline(ss, s_writing, ',');
     writing = atoi(s_writing.c_str());
-    //set 
-    
-    TOEFLScore.set(reading, listening, speaking, writing);
-    I_Student[j].set(firstName, lastName, country, cgpa, researchScore, TOEFLScore, studentNumber);
-    i_stu_count++;//Increment student count
-    studentNumber=getRandStudentNumber(StudentNumLibrary); //generator random student number
-    j++;
+    total = reading + listening + speaking + writing; 
+
+    //TOEFL SCORE checking:
+    //Checks whether the student read from the file has an adequate TOEFL score for competitive admission.
+    //If not, ignores the student in the file and does not put them into the admissions system.
+    //Also keeps track of the number of students in competitive admission via i_stu_count.
+    if(total>=93 && reading >= 20 && listening >= 20 && speaking >= 20 && writing >= 20){
+      TOEFLScore.set(reading, listening, speaking, writing); //set
+      I_Student[j].set(firstName, lastName, country, cgpa, researchScore, TOEFLScore, studentNumber);
+      i_stu_count++;//Increment student count
+      studentNumber=getRandStudentNumber(StudentNumLibrary); //generator random student number
+      j++;
+    }
   }
   internationalFile.close(); // close file
-  //Case function  for user input/interface
+  
+  //USER INTERFACE:
+  //The main user interface of the program is contained within the infinite while loop.
+  //After the arrays have been set and initialized via the code above, the user will be prompted to input values.
+  //The first value determines the parameter the sorting algorithm will sort by.
+  //The second value determines which set of students the program will sort.
+  //After the sorting has finished, the user may continue to sort and re-sort the arrays as they wish.
 
-  //USER INTERFACE 
-  int stuChoice, sortChoice;
+  char stuChoice, sortChoice;
   char contChoice;
-
   while(true)
   {
-    cout << "Enter number to sort by:\n" << "[1] CGPA\n[2] Research score\n[3] First name\n[4] Last name\n[5] Overall" << endl;
+    cout << "Enter number to sort by:\n" << "[1] CGPA\n[2] Research score\n[3] First name\n[4] Last name\n[5] Overall\nEnter Number: ";
     cin >> sortChoice;
-    cout << "Enter number to choose which students to sort:\n" << "[1] Domestic students\n[2] International students" << endl;
+    cout << "Enter number to choose which students to sort:\n" << "[1] Domestic students\n[2] International students\nEnter Number: ";
     cin >> stuChoice;
-    while(stuChoice != 1 && stuChoice != 2)
+    while(stuChoice != '1' && stuChoice != '2')
     {
-      cout << "Did not input 1 or 2, please try again\n[1] Domestic students\n[2] International students";
+      cout << "Did not input 1 or 2, please try again\n[1] Domestic students\n[2] International students\nEnter Number: ";
       cin >> stuChoice;
     }
-    if(stuChoice == 1)
+    if(stuChoice == '1')
     {
       sortArray(D_Student, sortChoice, d_stu_count);
       printALLDomestic(D_Student, d_stu_count);
     }
-    if(stuChoice == 2)
+    if(stuChoice == '2')
     {
       sortArray(I_Student, sortChoice, i_stu_count);
       printALLInternational(I_Student, i_stu_count);
