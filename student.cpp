@@ -525,7 +525,7 @@ void printALLDomestic(DomesticStudent student[], int size){
 
 void printALLInternational(InternationalStudent student[], int size){
     for(int i=0;i<size;i++){
-      cout << i+1 << ")";
+      cout << i+1 << ") ";
       cout << student[i] << endl;
  }
 }
